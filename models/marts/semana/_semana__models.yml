@@ -1,0 +1,54 @@
+version: 2
+
+models:
+  - name: fact_semana_bookings
+    description: Table of facts describing the different bookings on Semana
+    columns:
+      - name: bookings_id
+        description: '{{ doc("booking_id")}}'
+        tests:
+            - not_null
+            - unique
+      - name: reservation_date
+        description: '{{ doc("reservation_date")}}'
+      - name: period
+        description: '{{ doc("period")}}'
+      - name: created_at_France_bookings
+        description: '{{ doc("created_at_France_bookings")}}'
+      - name: status_label
+        description: '{{ doc("status_label")}}'
+      - name: collaborator_id
+        description: '{{ doc("collaborator_id")}}'
+        tests:
+            - not_null
+  - name: dim_semana_practices
+    description: Table of descriptions describing the different practices on Semana
+    columns:
+      - name: community_id
+        description: '{{ doc("community_id")}}'
+        tests:
+          - not_null
+          - unique
+      - name: name_practice
+        description: '{{ doc("name_practice")}}'
+      - name: city_parent_id
+        description: '{{ doc("city_parent_id")}}'
+      - name: created_at_France_practices
+        description: '{{ doc("created_at_France_practices")}}'
+  - name: dim_semana_collaborators
+    description: Table of descriptions describing the collaborators on Semana
+    columns:
+      - name: collaborator_id
+        description: '{{ doc("collaborator_id")}}'
+        tests:
+          - not_null
+          - unique
+      - name: role
+        description: '{{ doc("role")}}'
+      - name: created_at_France_collaborators
+        description: '{{ doc("created_at_France_collaborators")}}'
+      - name: community_id
+        description: '{{ doc("community_id")}}'
+          
+
+      
