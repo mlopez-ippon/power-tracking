@@ -20,11 +20,6 @@ Time when the booking has been realized
 **Type** : timestamp  
 {% enddocs %}
 
-{% docs agency %}
-Where the booking has been reserved  
-**Type** : string
-{% enddocs %}
-
 {% docs status_label %}
 What way to work
 **Type** : string  
@@ -37,7 +32,7 @@ Unique identifier for the practice
 **Type** : number
 {% enddocs %}
 
-{% docs name_practice %}
+{% docs practice_name %}
 Name of the practice  
 **Type** : string
 {% enddocs %}
@@ -45,6 +40,11 @@ Name of the practice
 {% docs city_parent_id %}
 ID of the city where the practice is
 **Type** : number  
+{% enddocs %}
+
+{% docs parent_practice_name %}
+Name of the parent practice if is not an agency 
+**Type** : string
 {% enddocs %}
 
 {% docs created_at_France_practices %}

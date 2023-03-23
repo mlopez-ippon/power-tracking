@@ -29,10 +29,12 @@ models:
         tests:
           - not_null
           - unique
-      - name: name_practice
-        description: '{{ doc("name_practice")}}'
+      - name: practice_name
+        description: '{{ doc("practice_name")}}'
       - name: city_parent_id
         description: '{{ doc("city_parent_id")}}'
+      - name: parent_practice_name
+        description: '{{ doc("parent_practice_name")}}'
       - name: created_at_France_practices
         description: '{{ doc("created_at_France_practices")}}'
   - name: dim_semana_collaborators

@@ -5,7 +5,7 @@ with source as (
 , renamed as (
     select
         id::number(38,0)                            as community_id
-        , name::string                              as name_practice
+        , name::string                              as practice_name
         , parentid::number(38,0)                    as city_parent_id
         , createdat::timestamp                      as created_at
         , _airbyte_ab_id::string                    as ingestion_id
@@ -15,7 +15,7 @@ with source as (
     from 
         source
     order by
-        name
+        practice_name
 ) 
 
 select * from renamed

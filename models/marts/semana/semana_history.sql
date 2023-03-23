@@ -10,13 +10,22 @@ with practices as (
     select * from {{ ref('fact_semana_bookings') }}
 )
 
+{% set periods = ["am", "pm", "day"] %}
+{% set status_labels = ["Bureau","Absence"] %}
+
 , semana_aggregation as (
     select
         b.reservation_date
-        , datename(weekday,b.reservation_date)      as day_of_the_week
-        , count_if(b.period like 'am' and b.status_label like 'office') over(partition by b.reservation_date) as morning_office_collaborators
-        , count_if(b.period like 'pm' and b.status_label like 'office') over(partition by b.reservation_date) as afternoon_office_collaborators
-        , count_if(b.period like 'day' and b.status_label like 'office') over(partition by b.reservation_date) as full_day_office_collaborators
+        , p.parent_practice_name
+        , dayname(b.reservation_date)       as day_of_the_week
+        {% for period in periods %}
+        {% for status_label in status_labels %}
+        , sum(count_if(b.period like '{{period}}' and b.status_label like '{{status_label}}')) over(partition by b.reservation_date, p.parent_practice_name) as {{period}}_{{status_label}}_collaborators
+        {% endfor %}
+        {% endfor%}
+        {% for period in periods %}
+        , sum(count_if(b.period like '{{period}}' and b.status_label like 'Télétravail')) over(partition by b.reservation_date, p.parent_practice_name) as {{period}}_Teletravail_collaborators
+        {% endfor%}
     from 
         bookings b
     inner join 
@@ -24,11 +33,13 @@ with practices as (
     on 
         b.collaborator_id=c.collaborator_id
     inner join 
-        pratices p
+        practices p
     on 
         p.community_id=c.community_id
+    group by
+        b.reservation_date, p.parent_practice_name
     order by 
-        b.reservation_date desc
+        b.reservation_date desc, p.parent_practice_name
 )
 
 select * from semana_aggregation

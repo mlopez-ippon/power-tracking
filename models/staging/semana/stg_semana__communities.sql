@@ -5,7 +5,7 @@ with source as (
 , semana_communities_structured as (
     select
         community_id
-        , name_practice
+        , practice_name
         , city_parent_id
         , created_at
     from
