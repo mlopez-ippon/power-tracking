@@ -49,6 +49,8 @@ models:
         description: '{{ doc("city_parent_id")}}'
       - name: parent_practice_name
         description: '{{ doc("parent_practice_name")}}'
+        tests:
+          - not_null
       - name: created_at_France_practices
         description: '{{ doc("created_at_France_practices")}}'
   - name: dim_semana_collaborators
