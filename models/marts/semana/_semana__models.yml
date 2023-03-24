@@ -4,7 +4,12 @@ models:
   - name: fact_semana_bookings
     description: Table of facts describing the different bookings on Semana
     columns:
-      - name: bookings_id
+      - name: _surrogate_key
+        description: '{{ doc("_surrogate_key")}}'
+        tests:
+            - not_null
+            - unique
+      - name: booking_id
         description: '{{ doc("booking_id")}}'
         tests:
             - not_null
@@ -13,14 +18,23 @@ models:
         description: '{{ doc("reservation_date")}}'
       - name: period
         description: '{{ doc("period")}}'
+        tests:
+          - accepted_values:
+              values: ['am','pm','day']
       - name: created_at_France_bookings
         description: '{{ doc("created_at_France_bookings")}}'
-      - name: status_label
-        description: '{{ doc("status_label")}}'
+      - name: type_res
+        description: '{{ doc("type_res")}}'
+        tests:
+          - accepted_values:
+              values: ['office','remote','off']
       - name: collaborator_id
         description: '{{ doc("collaborator_id")}}'
         tests:
             - not_null
+            - relationships:
+                field: collaborator_id
+                to: ref('dim_semana_collaborators')
   - name: dim_semana_practices
     description: Table of descriptions describing the different practices on Semana
     columns:
@@ -40,6 +54,11 @@ models:
   - name: dim_semana_collaborators
     description: Table of descriptions describing the collaborators on Semana
     columns:
+      - name: _surrogate_key
+        description: '{{ doc("_surrogate_key")}}'
+        tests:
+            - not_null
+            - unique
       - name: collaborator_id
         description: '{{ doc("collaborator_id")}}'
         tests:
@@ -47,6 +66,9 @@ models:
           - unique
       - name: role
         description: '{{ doc("role")}}'
+        tests:
+          - accepted_values:
+              values: ['collaborator','manager','admin']
       - name: created_at_France_collaborators
         description: '{{ doc("created_at_France_collaborators")}}'
       - name: community_id

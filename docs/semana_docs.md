@@ -1,3 +1,8 @@
+{% docs _surrogate_key %}
+Unique identifier for the two id columns  
+**Type** : string
+{% enddocs %}
+
 ----- Bookings -----
 
 {% docs booking_id %}
@@ -20,12 +25,12 @@ Time when the booking has been realized
 **Type** : timestamp  
 {% enddocs %}
 
-{% docs status_label %}
+{% docs type_res %}
 What way to work
 **Type** : string  
 {% enddocs %}
 
------ Agencies -----
+----- Practices -----
 
 {% docs community_id %}
 Unique identifier for the practice  

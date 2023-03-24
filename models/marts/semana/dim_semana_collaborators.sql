@@ -9,9 +9,14 @@
 }}
 
 select 
-    collaborator_id
-    , role
-    , convert_timezone('UTC','Europe/Paris',created_at::timestamp_ntz)    as created_at_France_collaborators
-    , community_id
+    md5(concat(coalesce(cast(c.collaborator_id as string),'_this_used_to_be_null_'),coalesce(cast(p.community_id as string),'_this_used_to_be_null_'))) as _surrogate_key
+    , c.collaborator_id
+    , c.role
+    , convert_timezone('UTC','Europe/Paris',c.created_at::timestamp_ntz)    as created_at_France_collaborators
+    , c.community_id
 from 
-    {{ ref('stg_semana__collaborators') }}
+    {{ ref('stg_semana__collaborators') }} c
+left join 
+    {{ ref('dim_semana_practices') }} p
+on 
+    c.community_id=p.community_id

@@ -6,7 +6,7 @@ with source as (
     select
         id::number(38,0)                            as booking_id
         , date::date                                as reservation_date
-        , type::string                              as type
+        , type::string                              as type_res
         , period::string                            as period
         , statusid::string                          as status_id
         , createdat::timestamp                      as created_at

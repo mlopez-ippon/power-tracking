@@ -9,7 +9,7 @@ with semana_bookings as (
         , period
         , created_at
         , floor_name
-        , status_label
+        , type_res
         , collaborator_id                                 
     from
         semana_bookings 

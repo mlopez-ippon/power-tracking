@@ -11,7 +11,7 @@ with practices as (
 )
 
 {% set periods = ["am", "pm", "day"] %}
-{% set status_labels = ["Bureau","Absence"] %}
+{% set type_res = ["office","remote","off"] %}
 
 , semana_aggregation as (
     select
@@ -19,12 +19,9 @@ with practices as (
         , p.parent_practice_name
         , dayname(b.reservation_date)       as day_of_the_week
         {% for period in periods %}
-        {% for status_label in status_labels %}
-        , sum(count_if(b.period like '{{period}}' and b.status_label like '{{status_label}}')) over(partition by b.reservation_date, p.parent_practice_name) as {{period}}_{{status_label}}_collaborators
+        {% for type in type_res %}
+        , sum(count_if(b.period like '{{period}}' and b.type_res like '{{type}}')) over(partition by b.reservation_date, p.parent_practice_name) as {{period}}_{{type}}_collaborators
         {% endfor %}
-        {% endfor%}
-        {% for period in periods %}
-        , sum(count_if(b.period like '{{period}}' and b.status_label like 'Télétravail')) over(partition by b.reservation_date, p.parent_practice_name) as {{period}}_Teletravail_collaborators
         {% endfor%}
     from 
         bookings b
