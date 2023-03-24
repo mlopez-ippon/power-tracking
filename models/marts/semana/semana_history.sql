@@ -10,7 +10,6 @@ with practices as (
     select * from {{ ref('fact_semana_bookings') }}
 )
 
-{% set periods = ["am", "pm", "day"] %}
 {% set type_res = ["office","remote","off"] %}
 
 , semana_aggregation as (
@@ -18,10 +17,10 @@ with practices as (
         b.reservation_date
         , p.parent_practice_name
         , dayname(b.reservation_date)       as day_of_the_week
-        {% for period in periods %}
         {% for type in type_res %}
-        , sum(count_if(b.period like '{{period}}' and b.type_res like '{{type}}')) over(partition by b.reservation_date, p.parent_practice_name) as {{period}}_{{type}}_collaborators
-        {% endfor %}
+        , (sum(count_if(b.period like 'day' and b.type_res like '{{type}}')) over(partition by b.reservation_date, p.parent_practice_name)
+        + sum(count_if(b.period not like 'day' and b.type_res like '{{type}}')/2) over(partition by b.reservation_date, p.parent_practice_name))
+        as day_{{type}}_collaborators
         {% endfor%}
     from 
         bookings b
