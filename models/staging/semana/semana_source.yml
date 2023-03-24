@@ -1,0 +1,15 @@
+version: 2
+
+sources:
+  - name: SEMANA_SCHEMA
+    description: Schema where normalized data are loaded from airbyte 
+    tables:
+      - name: BOOKINGS
+        description: >
+          Table containing all time-stable information about the bookings.
+      - name: COMMUNITIES
+        description: >
+          Table containing all time-stable information about the communities.
+      - name: COLLABORATORS
+        description: >
+          Table containing all time-stable information about the collaborators.  

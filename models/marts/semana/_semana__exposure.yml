@@ -1,0 +1,15 @@
+version: 2
+
+exposures:
+  - name: semana_reporting
+    label: Dashboard Semana reporting
+    type: dashboard
+    maturity: high
+    url: https://superset.apache.org/
+    description: > 
+        Dashboard analysis of Semana data for all French Ippon Technologies agencies 
+    depends_on:
+      - ref('semana_history')
+    owner:
+      name: Mateo Lopez
+      email: mlopez@ippon.fr
