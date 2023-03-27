@@ -12,7 +12,7 @@ select distinct
     p.community_id
     , p.practice_name
     , p.city_parent_id
-    , ifnull(p2.practice_name,split(p.practice_name,'-')[0])                  as parent_practice_name   --problème 2 practices Marseille
+    , ifnull(p2.practice_name,p.practice_name)                                as parent_practice_name
     , count_if(c.status like 'enabled') over(partition by c.community_id)     as nb_collaborators
     , convert_timezone('UTC','Europe/Paris',p.created_at::timestamp_ntz)      as created_at_France_practices
 from 
