@@ -51,6 +51,8 @@ models:
         description: '{{ doc("parent_practice_name")}}'
         tests:
           - not_null
+      - name: nb_collaborators
+        description: '{{ doc("nb_collaborators")}}'
       - name: created_at_France_practices
         description: '{{ doc("created_at_France_practices")}}'
   - name: dim_semana_collaborators
@@ -71,6 +73,11 @@ models:
         tests:
           - accepted_values:
               values: ['collaborator','manager','admin']
+      - name: status
+        description: '{{ doc("status")}}'
+        tests:
+          - accepted_values:
+              values: ['suspended','enabled']
       - name: created_at_France_collaborators
         description: '{{ doc("created_at_France_collaborators")}}'
       - name: community_id

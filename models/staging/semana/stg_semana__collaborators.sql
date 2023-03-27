@@ -6,6 +6,7 @@ with source as (
     select 
         collaborator_id
         , role
+        , status
         , created_at
         , community_id
     from 

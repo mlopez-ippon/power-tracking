@@ -52,6 +52,11 @@ Name of the parent practice if is not an agency
 **Type** : string
 {% enddocs %}
 
+{% docs nb_collaborators %}
+Current number of collaborator per practice 
+**Type** : string
+{% enddocs %}
+
 {% docs created_at_France_practices %}
 Time when the practice has been created on Semana  
 **Type** : timestamp  
@@ -66,6 +71,11 @@ Unique identifier for the collaborator
 
 {% docs role %}
 Role of the collaborator on Semana  
+**Type** : string
+{% enddocs %}
+
+{% docs status %}
+Status of the collaborator on Semana  
 **Type** : string
 {% enddocs %}
 
