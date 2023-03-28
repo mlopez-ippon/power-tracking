@@ -12,6 +12,7 @@ select
     md5(concat(coalesce(cast(c.collaborator_id as string),'_this_used_to_be_null_'),coalesce(cast(p.community_id as string),'_this_used_to_be_null_'))) as _surrogate_key
     , c.collaborator_id
     , c.role
+    , c.status
     , convert_timezone('UTC','Europe/Paris',c.created_at::timestamp_ntz)    as created_at_France_collaborators
     , c.community_id
 from 
