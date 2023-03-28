@@ -47,6 +47,8 @@ models:
         description: '{{ doc("practice_name")}}'
       - name: city_parent_id
         description: '{{ doc("city_parent_id")}}'
+        tests:
+          - not_null
       - name: parent_practice_name
         description: '{{ doc("parent_practice_name")}}'
         tests:

@@ -11,7 +11,7 @@
 select distinct 
     p.community_id
     , p.practice_name
-    , p.city_parent_id
+    , ifnull(p.city_parent_id,p.community_id)                                 as city_parent_id
     , ifnull(p2.practice_name,p.practice_name)                                as parent_practice_name
     , count_if(c.status like 'enabled') over(partition by c.community_id)     as nb_collaborators
     , convert_timezone('UTC','Europe/Paris',p.created_at::timestamp_ntz)      as created_at_France_practices

@@ -12,12 +12,12 @@ with practices as (
 
 , unset as (
     select 
-        parent_practice_name
+        city_parent_id
         , sum(nb_collaborators) as nb
     from 
         practices 
     group by 
-        parent_practice_name
+        city_parent_id
 )
 
 {% set type_res = ["office","remote","off"] %}
@@ -47,7 +47,7 @@ with practices as (
     inner join 
         unset u 
     on 
-        p.parent_practice_name=u.parent_practice_name
+        p.city_parent_id=u.city_parent_id
     group by
         b.reservation_date, p.parent_practice_name, u.nb
     order by 
