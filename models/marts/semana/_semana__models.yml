@@ -45,6 +45,10 @@ models:
           - unique
       - name: practice_name
         description: '{{ doc("practice_name")}}'
+      - name: latitude
+        description: '{{ doc("latitude")}}'
+      - name: longitude
+        description: '{{ doc("longitude")}}'
       - name: city_parent_id
         description: '{{ doc("city_parent_id")}}'
         tests:

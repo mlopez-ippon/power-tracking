@@ -42,6 +42,16 @@ Name of the practice
 **Type** : string
 {% enddocs %}
 
+{% docs latitude %}
+Latitude of the agency  
+**Type** : float
+{% enddocs %}
+
+{% docs longitude %}
+Longitude of the agency  
+**Type** : float
+{% enddocs %}
+
 {% docs city_parent_id %}
 ID of the city where the practice is
 **Type** : number  
