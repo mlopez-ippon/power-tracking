@@ -11,6 +11,8 @@
 select distinct 
     p.community_id
     , p.practice_name
+    , a.latitude                                                                                                            
+    , a.longitude                                               
     , ifnull(p.city_parent_id,p.community_id)                                 as city_parent_id
     , ifnull(p2.practice_name,p.practice_name)                                as parent_practice_name
     , count_if(c.status like 'enabled') over(partition by c.community_id)     as nb_collaborators
@@ -21,10 +23,14 @@ left join
     {{ ref('stg_semana__communities') }} p2
 on 
     p.city_parent_id=p2.community_id
-inner join
+left join
     {{ ref('stg_semana__collaborators') }} c
 on
     p.community_id=c.community_id
+left join
+    {{ ref('stg_semana__agencies') }} a
+on  
+    p.practice_name=a.agency_city
 where
     parent_practice_name not like 'Moscou' 
     and parent_practice_name not like 'Melbourne'

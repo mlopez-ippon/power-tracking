@@ -20,9 +20,20 @@ with practices as (
         city_parent_id
 )
 
+, coordinates as (
+    select
+        practice_name
+        , latitude
+        , longitude
+    from
+        practices
+    where
+        community_id=city_parent_id
+)
+
 {% set type_res = ["office","remote","off"] %}
 
-, semana_aggregation as (
+, cte_group_by as (
     select
         b.reservation_date
         , p.parent_practice_name
@@ -52,6 +63,25 @@ with practices as (
         b.reservation_date, p.parent_practice_name, u.nb
     order by 
         b.reservation_date desc, p.parent_practice_name
+)
+
+, semana_aggregation as (
+    select
+        cte.reservation_date
+        , cte.day_of_the_week
+        , cte.parent_practice_name
+        , c.latitude
+        , c.longitude
+        , cte.day_office_collaborators
+        , cte.day_remote_collaborators
+        , cte.day_off_collaborators  
+        , cte.day_unset_collaborators
+    from 
+        cte_group_by cte
+    inner join 
+        coordinates c
+    on 
+        cte.parent_practice_name=c.practice_name
 )
 
 select * from semana_aggregation
