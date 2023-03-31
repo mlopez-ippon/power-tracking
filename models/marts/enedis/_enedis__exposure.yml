@@ -1,0 +1,15 @@
+version: 2
+
+exposures:
+  - name: enedis_reporting
+    label: Dashboard Enedis reporting
+    type: dashboard
+    maturity: high
+    url: https://superset.apache.org/
+    description: > 
+        Dashboard analysis of Enedis data for all French Ippon Technologies agencies 
+    depends_on:
+      - ref('enedis_history')
+    owner:
+      name: Mateo Lopez
+      email: mlopez@ippon.fr

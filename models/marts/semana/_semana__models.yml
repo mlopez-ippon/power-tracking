@@ -35,6 +35,10 @@ models:
             - relationships:
                 field: collaborator_id
                 to: ref('dim_semana_collaborators')
+      - name : semana_job_insert_at
+        description: '{{ doc("semana_job_insert_at") }}'
+      - name : semana_job_modify_at
+        description: '{{ doc("semana_job_modify_at") }}'
   - name: dim_semana_practices
     description: Table of descriptions describing the different practices on Semana
     columns:
@@ -61,6 +65,10 @@ models:
         description: '{{ doc("nb_collaborators")}}'
       - name: created_at_France_practices
         description: '{{ doc("created_at_France_practices")}}'
+      - name : semana_job_insert_at
+        description: '{{ doc("semana_job_insert_at") }}'
+      - name : semana_job_modify_at
+        description: '{{ doc("semana_job_modify_at") }}'
   - name: dim_semana_collaborators
     description: Table of descriptions describing the collaborators on Semana
     columns:
@@ -88,6 +96,10 @@ models:
         description: '{{ doc("created_at_France_collaborators")}}'
       - name: community_id
         description: '{{ doc("community_id")}}'
+      - name : semana_job_insert_at
+        description: '{{ doc("semana_job_insert_at") }}'
+      - name : semana_job_modify_at
+        description: '{{ doc("semana_job_modify_at") }}'
           
 
       

@@ -3,7 +3,7 @@
     materialized='incremental',
     incremental_strategy='merge',
     cluster_by='city_parent_id',
-    merge_exclude_columns='community_id',
+    merge_exclude_columns=['community_id','semana_job_insert_at'],
     unique_key='community_id'
   )
 }}
@@ -17,6 +17,8 @@ select distinct
     , ifnull(p2.practice_name,p.practice_name)                                as parent_practice_name
     , count_if(c.status like 'enabled') over(partition by c.community_id)     as nb_collaborators
     , convert_timezone('UTC','Europe/Paris',p.created_at::timestamp_ntz)      as created_at_France_practices
+    , sysdate()                                                               as semana_job_insert_at
+    , sysdate()                                                               as semana_job_modify_at 
 from 
     {{ ref('stg_semana__communities') }} p
 left join 
