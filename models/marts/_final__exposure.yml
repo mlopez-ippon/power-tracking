@@ -1,0 +1,15 @@
+version: 2
+
+exposures:
+  - name: power_tracking_reporting
+    label: Dashboard Power-tracking reporting
+    type: dashboard
+    maturity: high
+    url: https://superset.apache.org/
+    description: > 
+        Dashboard analysis of energy tilisation for all French Ippon Technologies agencies 
+    depends_on:
+      - ref('final_history')
+    owner:
+      name: Mateo Lopez
+      email: mlopez@ippon.fr

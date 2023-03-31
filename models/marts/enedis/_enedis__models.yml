@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: fact_enedis_consommation
+    description: Table of facts describing the Enedis consommation
+    columns:
+      - name: conso_date
+        description: '{{ doc("conso_date")}}'
+      - name: h_offpeak_supplier
+        description: '{{ doc("h_offpeak_supplier")}}'
+      - name: h_peak_supplier
+        description: '{{ doc("h_peak_supplier")}}'
+      - name: total_sum
+        description: '{{ doc("total_sum")}}'
+      - name : enedis_job_insert_at
+        description: '{{ doc("enedis_job_insert_at") }}'
+      - name : enedis_job_modify_at
+        description: '{{ doc("enedis_job_modify_at") }}'

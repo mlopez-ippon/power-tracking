@@ -3,6 +3,16 @@ Unique identifier for the two id columns
 **Type** : string
 {% enddocs %}
 
+{% docs semana_job_insert_at %}
+Timestamp indicating when the line was added  
+**Type** : timestamp
+{% enddocs %}
+
+{% docs semana_job_modify_at %}
+Timestamp indicating the last modification of the line  
+**Type** : timestamp
+{% enddocs %}
+
 ----- Bookings -----
 
 {% docs booking_id %}
@@ -12,7 +22,7 @@ Unique identifier for the booking
 
 {% docs reservation_date %}
 Date when the booking takes place  
-**Type** : string
+**Type** : date
 {% enddocs %}
 
 {% docs period %}
@@ -64,7 +74,7 @@ Name of the parent practice if is not an agency
 
 {% docs nb_collaborators %}
 Current number of collaborator per practice 
-**Type** : string
+**Type** : number
 {% enddocs %}
 
 {% docs created_at_France_practices %}
