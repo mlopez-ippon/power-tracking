@@ -35,10 +35,20 @@ models:
             - relationships:
                 field: collaborator_id
                 to: ref('dim_semana_collaborators')
-      - name : semana_job_insert_at
+      - name: semana_job_insert_at
         description: '{{ doc("semana_job_insert_at") }}'
-      - name : semana_job_modify_at
+      - name: semana_job_modify_at
         description: '{{ doc("semana_job_modify_at") }}'
+    tests:
+      - power_tracking.equality:
+          compare_model: ref('expected_output_bookings')
+          compare_columns:
+            - booking_id
+            - reservation_date
+            - period
+            - type_res
+            - collaborator_id
+          env: ci
   - name: dim_semana_practices
     description: Table of descriptions describing the different practices on Semana
     columns:
@@ -65,10 +75,22 @@ models:
         description: '{{ doc("nb_collaborators")}}'
       - name: created_at_France_practices
         description: '{{ doc("created_at_France_practices")}}'
-      - name : semana_job_insert_at
+      - name: semana_job_insert_at
         description: '{{ doc("semana_job_insert_at") }}'
-      - name : semana_job_modify_at
+      - name: semana_job_modify_at
         description: '{{ doc("semana_job_modify_at") }}'
+    tests:
+      - power_tracking.equality:
+          compare_model: ref('expected_output_communities')
+          compare_columns:
+            - community_id
+            - practice_name
+            - latitude                                                                                                            
+            - longitude                                               
+            - city_parent_id
+            - parent_practice_name
+            - nb_collaborators
+          env: ci
   - name: dim_semana_collaborators
     description: Table of descriptions describing the collaborators on Semana
     columns:
@@ -96,10 +118,19 @@ models:
         description: '{{ doc("created_at_France_collaborators")}}'
       - name: community_id
         description: '{{ doc("community_id")}}'
-      - name : semana_job_insert_at
+      - name: semana_job_insert_at
         description: '{{ doc("semana_job_insert_at") }}'
-      - name : semana_job_modify_at
+      - name: semana_job_modify_at
         description: '{{ doc("semana_job_modify_at") }}'
+    tests:
+      - power_tracking.equality:
+          compare_model: ref('expected_output_collaborators')
+          compare_columns:
+            - collaborator_id
+            - role
+            - status
+            - community_id
+          env: ci
           
 
       
