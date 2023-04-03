@@ -13,7 +13,8 @@ with semana_bookings as (
         , collaborator_id                                 
     from
         semana_bookings 
-    qualify row_number() over (partition by reservation_date, collaborator_id order by created_at desc) = 1
+    qualify 
+        row_number() over (partition by reservation_date, collaborator_id order by created_at desc) = 1
 )
 
 select * from semana_bookings_structured

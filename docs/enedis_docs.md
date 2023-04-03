@@ -5,22 +5,22 @@ Date de la consommation d'énèrgie
 
 {% docs city %}
 Date de la consommation d'énèrgie
-**Type** : date
+**Type** : string
 {% enddocs %}
 
 {% docs h_offpeak_supplier %}
 Consommation en heures creuses
-**Type** : date
+**Type** : number
 {% enddocs %}
 
 {% docs h_peak_supplier %}
 Consommation en heures pleines
-**Type** : date
+**Type** : number
 {% enddocs %}
 
 {% docs total_sum %}
 Somme consommation heures pleines et heures creuses
-**Type** : date
+**Type** : number
 {% enddocs %}
 
 {% docs enedis_job_insert_at %}

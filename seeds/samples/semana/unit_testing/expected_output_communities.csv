@@ -1,0 +1,3 @@
+community_id,practice_name,latitude,longitude,city_parent_id,parent_practice_name,nb_collaborators
+1,Bordeaux Data,null,null,2,Bordeaux,1
+2,Bordeaux,44.8442588,-0.5769869,2,Bordeaux,1

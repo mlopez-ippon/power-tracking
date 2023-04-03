@@ -15,6 +15,8 @@ with enedis_consommation as (
         , total_sum
     from 
         enedis_consommation
+    qualify
+        row_number() over(partition by conso_date, city order by conso_date desc) = 1
 )
 
 select * from enedis_consommation_structured

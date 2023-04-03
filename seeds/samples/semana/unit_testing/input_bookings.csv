@@ -1,0 +1,3 @@
+booking_id,reservation_date,period,created_at,floor_name,type_res,collaborator_id
+1,2023-04-06,day,2023-03-29 09:15:00,Bordeaux,office,1
+2,2023-04-06,day,2023-03-29 09:30:00,Bordeaux,office,2

@@ -1,0 +1,3 @@
+booking_id,reservation_date,period,type_res,collaborator_id
+1,2023-04-06,day,office,1
+2,2023-04-06,day,office,2
