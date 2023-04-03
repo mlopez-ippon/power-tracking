@@ -17,55 +17,41 @@
         {{ return('') }}
     {% endif %}
 
-    -- setup
-    {%- do dbt_utils._is_relation(model, 'test_equality') -%}
-
     {#-
     If the compare_cols arg is provided, we can run this test without querying the
     information schema — this allows the model to be an ephemeral model
     -#}
 
     {%- if not compare_columns -%}
-        {%- do dbt_utils._is_ephemeral(model, 'test_equality') -%}
         {%- set compare_columns = adapter.get_columns_in_relation(model) | map(attribute='quoted') -%}
     {%- endif -%}
 
     {% set compare_cols_csv = compare_columns | join(', ') %}
 
     with a as (
-
         select * from {{ model }}
-
     ),
 
     b as (
-
         select * from {{ compare_model }}
-
     ),
 
     a_minus_b as (
-
         select {{compare_cols_csv}} from a
         {{ dbt.except() }}
         select {{compare_cols_csv}} from b
-
     ),
 
     b_minus_a as (
-
         select {{compare_cols_csv}} from b
         {{ dbt.except() }}
         select {{compare_cols_csv}} from a
-
     ),
 
     unioned as (
-
         select 'a_minus_b' as which_diff, a_minus_b.* from a_minus_b
         union all
         select 'b_minus_a' as which_diff, b_minus_a.* from b_minus_a
-
     )
 
     select * from unioned
