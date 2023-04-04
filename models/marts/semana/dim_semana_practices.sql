@@ -9,11 +9,11 @@
 }}
 
 with semana_communities_structured as (
-    {{ mockable_source(target.name,'input_communities','stg_semana__communities') }}
+    select * from {{ ref('stg_semana__communities') }}
 )
 
 , semana_collaborators_structured as (
-    {{ mockable_source(target.name,'input_collaborators','stg_semana__collaborators') }}
+    select * from {{ ref('stg_semana__collaborators') }}
 )
 
 , dim_semana_practices as (
@@ -23,7 +23,7 @@ with semana_communities_structured as (
         , a.latitude                                                                                                            
         , a.longitude                                               
         , ifnull(p.city_parent_id,p.community_id)                                 as city_parent_id
-        , ifnull(p2.practice_name,p.practice_name)                                as parent_practice_name
+        , ifnull(p2.practice_name,p.practice_name)                                as agency
         , count_if(c.status like 'enabled') over(partition by c.community_id)     as nb_collaborators
         , convert_timezone('UTC','Europe/Paris',p.created_at::timestamp_ntz)      as created_at_France_practices
         , sysdate()                                                               as semana_job_insert_at
@@ -43,13 +43,13 @@ with semana_communities_structured as (
     on  
         p.practice_name=a.agency_city
     where
-        parent_practice_name not like 'Moscou' 
-        and parent_practice_name not like 'Melbourne'
-        and parent_practice_name not like 'IpponUSA'
-        and parent_practice_name not like 'Coworkers'
-        and parent_practice_name not like 'Guests'
+        agency not like 'Moscou' 
+        and agency not like 'Melbourne'
+        and agency not like 'IpponUSA'
+        and agency not like 'Coworkers'
+        and agency not like 'Guests'
     order by 
-        parent_practice_name
+        agency
 )
 
 select * from dim_semana_practices

@@ -10,7 +10,7 @@ with semana_aggregation as (
     select
         s.reservation_date
         , s.day_of_the_week
-        , s.parent_practice_name
+        , s.agency
         , s.latitude
         , s.longitude
         , e.h_offpeak_supplier
@@ -24,7 +24,7 @@ with semana_aggregation as (
     left join
         enedis_aggregation e
     on 
-        s.reservation_date=e.conso_date and s.parent_practice_name=e.city
+        s.reservation_date=e.conso_date and s.agency=e.city
 )
 
 select * from final_aggregation

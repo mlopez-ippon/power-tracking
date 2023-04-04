@@ -36,11 +36,11 @@ with practices as (
 , cte_group_by as (
     select
         b.reservation_date
-        , p.parent_practice_name
+        , p.agency
         , dayname(b.reservation_date)       as day_of_the_week
         {% for type in type_res %}
-        , (sum(count_if(b.period like 'day' and b.type_res like '{{type}}')) over(partition by b.reservation_date, p.parent_practice_name)
-        + sum(count_if(b.period not like 'day' and b.type_res like '{{type}}')/2) over(partition by b.reservation_date, p.parent_practice_name))
+        , (sum(count_if(b.period like 'day' and b.type_res like '{{type}}')) over(partition by b.reservation_date, p.agency)
+        + sum(count_if(b.period not like 'day' and b.type_res like '{{type}}')/2) over(partition by b.reservation_date, p.agency))
         as day_{{type}}_collaborators
         {% endfor%}
         , (u.nb-day_office_collaborators-day_remote_collaborators-day_off_collaborators)  
@@ -60,16 +60,16 @@ with practices as (
     on 
         p.city_parent_id=u.city_parent_id
     group by
-        b.reservation_date, p.parent_practice_name, u.nb
+        b.reservation_date, p.agency, u.nb
     order by 
-        b.reservation_date desc, p.parent_practice_name
+        b.reservation_date desc, p.agency
 )
 
 , semana_aggregation as (
     select
         cte.reservation_date
         , cte.day_of_the_week
-        , cte.parent_practice_name
+        , cte.agency
         , c.latitude
         , c.longitude
         , cte.day_office_collaborators
@@ -81,7 +81,7 @@ with practices as (
     inner join 
         coordinates c
     on 
-        cte.parent_practice_name=c.practice_name
+        cte.agency=c.practice_name
 )
 
 select * from semana_aggregation

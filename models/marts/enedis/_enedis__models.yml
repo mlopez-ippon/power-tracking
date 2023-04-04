@@ -19,7 +19,7 @@ models:
       - name: enedis_job_modify_at
         description: '{{ doc("enedis_job_modify_at") }}'
     tests:
-      - power_tracking.equality:
+      - dbt_utils.equality:
           compare_model: ref('expected_output_consommation')
           compare_columns:
             - conso_date
@@ -27,4 +27,4 @@ models:
             - h_offpeak_supplier
             - h_peak_supplier
             - total_sum
-          env: ci
+          tags: ['ci']

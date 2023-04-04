@@ -40,7 +40,7 @@ models:
       - name: semana_job_modify_at
         description: '{{ doc("semana_job_modify_at") }}'
     tests:
-      - power_tracking.equality:
+      - dbt_utils.equality:
           compare_model: ref('expected_output_bookings')
           compare_columns:
             - booking_id
@@ -48,7 +48,7 @@ models:
             - period
             - type_res
             - collaborator_id
-          env: ci
+          tags: ['ci']
   - name: dim_semana_practices
     description: Table of descriptions describing the different practices on Semana
     columns:
@@ -67,8 +67,8 @@ models:
         description: '{{ doc("city_parent_id")}}'
         tests:
           - not_null
-      - name: parent_practice_name
-        description: '{{ doc("parent_practice_name")}}'
+      - name: agency
+        description: '{{ doc("agency")}}'
         tests:
           - not_null
       - name: nb_collaborators
@@ -80,7 +80,7 @@ models:
       - name: semana_job_modify_at
         description: '{{ doc("semana_job_modify_at") }}'
     tests:
-      - power_tracking.equality:
+      - dbt_utils.equality:
           compare_model: ref('expected_output_communities')
           compare_columns:
             - community_id
@@ -90,7 +90,7 @@ models:
             - city_parent_id
             - parent_practice_name
             - nb_collaborators
-          env: ci
+          tags: ['ci']
   - name: dim_semana_collaborators
     description: Table of descriptions describing the collaborators on Semana
     columns:
@@ -123,14 +123,14 @@ models:
       - name: semana_job_modify_at
         description: '{{ doc("semana_job_modify_at") }}'
     tests:
-      - power_tracking.equality:
+      - dbt_utils.equality:
           compare_model: ref('expected_output_collaborators')
           compare_columns:
             - collaborator_id
             - role
             - status
             - community_id
-          env: ci
+          tags: ['ci']
           
 
       

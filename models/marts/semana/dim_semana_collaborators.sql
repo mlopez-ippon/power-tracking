@@ -9,11 +9,11 @@
 }}
 
 with semana_communities_structured as (
-    {{ mockable_source(target.name,'input_communities','stg_semana__communities') }}
+    select * from {{ ref('stg_semana__communities') }}
 )
 
 , semana_collaborators_structured as (
-    {{ mockable_source(target.name,'input_collaborators','stg_semana__collaborators') }}
+    select * from {{ ref('stg_semana__collaborators') }}
 )
 
 , dim_semana_collaborators as (

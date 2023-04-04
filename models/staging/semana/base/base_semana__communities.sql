@@ -1,5 +1,5 @@
 with source as (
-    select * from {{ source('SEMANA_SCHEMA','COMMUNITIES') }}
+    {{ mockable_source('input_communities','SEMANA_SCHEMA','COMMUNITIES') }}
 )
 
 , renamed as (
