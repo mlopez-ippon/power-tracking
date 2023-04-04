@@ -9,7 +9,7 @@
 }}
 
 with enedis_consommation_structured as (
-    {{ mockable_source(target.name,'input_consommation','stg_enedis__consommation') }}
+    select * from {{ ref('stg_enedis__consommation') }}
 )
 
 , fact_enedis_consommation as (

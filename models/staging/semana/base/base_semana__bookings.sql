@@ -1,5 +1,5 @@
 with source as (
-    select * from {{ source('SEMANA_SCHEMA','BOOKINGS') }}
+    {{ mockable_source('input_bookings','SEMANA_SCHEMA','BOOKINGS') }}
 )
 
 , renamed as (

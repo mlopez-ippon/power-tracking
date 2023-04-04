@@ -9,11 +9,11 @@
 }}
 
 with semana_bookings_structured as (
-    {{ mockable_source(target.name,'input_bookings','stg_semana__bookings') }}
+    select * from {{ ref('stg_semana__bookings') }}
 )
 
 , semana_collaborators_structured as (
-    {{ mockable_source(target.name,'input_collaborators','stg_semana__collaborators') }}
+    select * from {{ ref('stg_semana__collaborators') }}
 )
 
 , fact_semana_bookings as (

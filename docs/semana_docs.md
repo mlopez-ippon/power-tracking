@@ -67,8 +67,8 @@ ID of the city where the practice is
 **Type** : number  
 {% enddocs %}
 
-{% docs parent_practice_name %}
-Name of the parent practice if is not an agency 
+{% docs agency %}
+Name of the agency parent of the practice 
 **Type** : string
 {% enddocs %}
 
