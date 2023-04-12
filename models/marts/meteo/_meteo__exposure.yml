@@ -1,0 +1,15 @@
+version: 2
+
+exposures:
+  - name: meteo_reporting
+    label: Dashboard Meteo reporting
+    type: dashboard
+    maturity: high
+    url: https://superset.apache.org/
+    description: > 
+        Dashboard analysis of Meteo data for all French cities where there is an Ippon Technologies agency
+    depends_on:
+      - ref('meteo_history')
+    owner:
+      name: Mathis Le Gall
+      email: mlegall@ippon.fr
