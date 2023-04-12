@@ -1,0 +1,48 @@
+version: 2
+
+models:
+  - name: fact_meteo_meteo
+    description: Table of facts describing the Meteo
+    columns:
+      - name: capture_time
+        description: '{{ doc("capture_time")}}'
+      - name: station_name
+        description: '{{ doc("station_name") }}'
+      - name: temperature_celsius
+        description: '{{ doc("temperature_celsius")}}'
+      - name: humidity
+        description: '{{ doc("humidity")}}'
+      - name: min_temperature_last_12_hours_celsius
+        description: '{{ doc("min_temperature_last_12_hours_celsius")}}'
+      - name: max_temperature_last_12_hours_celsius
+        description: '{{ doc("max_temperature_last_12_hours_celsius") }}'
+      - name: snow_cover_height
+        description: '{{ doc("snow_cover_height") }}'
+      - name: latitude
+        description: '{{ doc("latitude_station") }}'
+      - name: longitude
+        description: '{{ doc("longitude_station") }}'
+      - name: epci_name
+        description: '{{ doc("epci_name") }}'
+      - name: month
+        description: '{{ doc("month") }}'
+      - name: meteo_job_insert_at
+        description: '{{ doc("meteo_job_insert_at") }}'
+      - name: meteo_job_modify_at
+        description: '{{ doc("meteo_job_modify_at") }}'
+    tests:
+      - dbt_utils.equality:
+          compare_model: ref('expected_output_meteo')
+          compare_columns:
+            - capture_time
+            - station_name
+            - temperature_celsius
+            - humidity
+            - min_temperature_last_12_hours_celsius
+            - max_temperature_last_12_hours_celsius
+            - snow_cover_height
+            - latitude
+            - longitude
+            - epci_name
+            - month
+          tags: ['ci']
