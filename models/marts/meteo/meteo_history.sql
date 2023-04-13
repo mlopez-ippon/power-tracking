@@ -2,9 +2,12 @@ with meteo as (
     select * from {{ ref('fact_meteo_meteo') }}
 )
 
+
 , meteo_aggregation as(
     select
-        capture_time
+        date
+        , capture_time
+        , city
         , station_name
         , temperature_celsius
         , humidity
@@ -13,7 +16,6 @@ with meteo as (
         , snow_cover_height
         , latitude
         , longitude
-        , epci_name
         , month
     from
         meteo

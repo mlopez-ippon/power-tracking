@@ -1,2 +1,2 @@
-capture_time,station_name,temperature_celsius,humidity,min_temperature_last_12_hours_celsius,max_temperature_last_12_hours_celsius,snow_cover_height,latitude,longitude,epci_name,month
-2023-02-16 01:00:00.000 +0100,BORDEAUX-MERIGNAC,3.9,87,null,null,0,44.830667,-0.691333,Bordeaux Métropole,2
+date,capture_time,city,station_name,temperature_celsius,humidity,min_temperature_last_12_hours_celsius,max_temperature_last_12_hours_celsius,snow_cover_height,latitude,longitude,month
+2023-02-16,2023-02-16 01:00:00.000 +0100,Bordeaux,BORDEAUX-MERIGNAC,3.9,87,null,null,0,44.830667,-0.691333,2
