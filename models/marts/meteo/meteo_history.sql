@@ -2,6 +2,7 @@ with meteo as (
     select * from {{ ref('fact_meteo_meteo') }}
 )
 
+
 , meteo_aggregation as(
     select
         date
