@@ -6,6 +6,8 @@ models:
     columns:
       - name: capture_time
         description: '{{ doc("capture_time")}}'
+      - name: city
+        description: '{{ doc("city_station")}}'
       - name: station_name
         description: '{{ doc("station_name") }}'
       - name: temperature_celsius

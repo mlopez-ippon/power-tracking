@@ -3,6 +3,11 @@ Date et heure de capture des données
 **Type** : date-time
 {% enddocs %}
 
+{% docs city_station %}
+Nom de la ville
+**Type** : string
+{% enddocs %}
+
 {% docs station_name %}
 Nom de la station
 **Type** : string

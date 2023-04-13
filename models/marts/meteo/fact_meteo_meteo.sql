@@ -14,7 +14,20 @@ with meteo_structured as (
 
 , fact_meteo_meteo as (
     select 
-        capture_time
+        date(capture_time) as date
+        , capture_time
+        , case epci_name
+            when 'Bordeaux Métropole' then 'Bordeaux'
+            when 'Métropole du Grand Paris' then 'Paris'
+            when 'Eurométropole de Strasbourg' then 'Strasbourg'
+            when 'Métropole Européenne de Lille' then 'Lille'
+            when 'Nantes Métropole' then 'Nantes'
+            when 'Tours Métropole Val de Loire' then 'Tours'
+            when 'Toulouse Métropole' then 'Toulouse'
+            when 'Métropole d''Aix-Marseille-Provence' then 'Marseille'
+            when 'CC de l''Est Lyonnais (CCEL)' then 'Lyon'
+            else epci_name
+        end as city
         , station_name
         , temperature_celsius
         , humidity
@@ -23,7 +36,6 @@ with meteo_structured as (
         , snow_cover_height
         , latitude
         , longitude
-        , epci_name
         , month
         , sysdate()                                         as meteo_job_insert_at
         , sysdate()                                         as meteo_job_modify_at   
