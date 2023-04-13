@@ -1,3 +1,8 @@
+{% docs date_meteo %}
+Date de capture des données
+**Type** : date-time
+{% enddocs %}
+
 {% docs capture_time %}
 Date et heure de capture des données
 **Type** : date-time
