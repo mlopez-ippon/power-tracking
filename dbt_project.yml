@@ -37,3 +37,7 @@ models:
     # Applies to all files under models/staging/
     staging:
       materialized: ephemeral
+
+vars:
+  is_backload: false
+  nb_backload_days: -10

@@ -1,5 +1,12 @@
 with meteo_meteo as (
     select * from {{ ref('base_meteo__meteo') }}
+    {% if var('is_backload') %} 
+        where 
+            normalisation_timestamp >= dateadd(day, {{ var('nb_backload_days') }} , sysdate())
+    {% elif is_prod() %}
+        where 
+            normalisation_timestamp >= dateadd(day, -1, sysdate())
+    {% endif %}
 )
 
 , meteo_structured as (
@@ -15,8 +22,11 @@ with meteo_meteo as (
         , longitude
         , epci_name
         , month
+        , normalisation_timestamp
     from
         meteo_meteo
+    qualify 
+        row_number() over (partition by capture_time, station_name order by normalisation_timestamp desc) = 1
 )
 
 select * from meteo_structured

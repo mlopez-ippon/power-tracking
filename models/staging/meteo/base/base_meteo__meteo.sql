@@ -66,4 +66,4 @@ with source as (
         capture_time
 )
 
-select * from renamed 
+select * from renamed
