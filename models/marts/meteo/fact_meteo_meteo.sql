@@ -41,6 +41,8 @@ with meteo_structured as (
         , sysdate()                                         as meteo_job_modify_at   
     from
         meteo_structured
+    where
+        date_part('hour', capture_time) IN (8,10,11,13,14,16,17,19)
 )
 
 select * from fact_meteo_meteo
