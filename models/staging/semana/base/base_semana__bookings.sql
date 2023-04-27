@@ -1,5 +1,12 @@
 with source as (
-    {{ mockable_source('input_bookings','SEMANA_SCHEMA','BOOKINGS') }}
+    {{ mockable_source('input_bookings','POWER_TRACKING_SCHEMA','BOOKINGS') }}
+    {% if var('is_backload') %} 
+        where 
+            _airbyte_normalized_at >= dateadd(day, {{ var('nb_backload_days') }} , sysdate())
+    {% elif is_prod() %}
+        where 
+            _airbyte_normalized_at >= dateadd(day, -1, sysdate())
+    {% endif %}
 )
 
 , renamed as (

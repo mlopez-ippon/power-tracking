@@ -1,6 +1,6 @@
 {% macro is_prod() %}
 
-    {% if target.name in ["dev", "ci", "CI"] %}
+    {% if target.name.lower() in ["dev", "ci"] %}
         {{ return(false) }}
     {% else %}
         {{ return(true) }}

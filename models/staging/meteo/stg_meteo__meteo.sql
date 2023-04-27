@@ -1,12 +1,5 @@
 with meteo_meteo as (
     select * from {{ ref('base_meteo__meteo') }}
-    {% if var('is_backload') %} 
-        where 
-            normalisation_timestamp >= dateadd(day, {{ var('nb_backload_days') }} , sysdate())
-    {% elif is_prod() %}
-        where 
-            normalisation_timestamp >= dateadd(day, -1, sysdate())
-    {% endif %}
 )
 
 , meteo_structured as (

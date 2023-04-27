@@ -1,5 +1,5 @@
 with source as (
-    {{ mockable_source('input_collaborators','SEMANA_SCHEMA','COLLABORATORS') }}
+    {{ mockable_source('input_collaborators','POWER_TRACKING_SCHEMA','COLLABORATORS') }}
 )
 
 , renamed as (

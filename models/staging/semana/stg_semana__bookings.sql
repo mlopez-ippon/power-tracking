@@ -1,13 +1,5 @@
 with semana_bookings as (
     select * from {{ ref('base_semana__bookings') }}
-    {% if var('is_backload') %} 
-        where 
-            normalisation_timestamp >= dateadd(day, {{ var('nb_backload_days') }} , sysdate())
-    {% elif is_prod() %}
-        where 
-            normalisation_timestamp >= dateadd(day, -1, sysdate())
-    {% endif %}
-    
 )
 
 , semana_bookings_structured as (
