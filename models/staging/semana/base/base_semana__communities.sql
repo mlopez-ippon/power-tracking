@@ -1,5 +1,5 @@
 with source as (
-    {{ mockable_source('input_communities','SEMANA_SCHEMA','COMMUNITIES') }}
+    {{ mockable_source('input_communities','POWER_TRACKING_SCHEMA','COMMUNITIES') }}
 )
 
 , renamed as (

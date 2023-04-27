@@ -1,7 +1,7 @@
 version: 2
 
 sources:
-  - name: METEO_SCHEMA
+  - name: POWER_TRACKING_SCHEMA
     description: Schema where normalized data are loaded from airbyte 
     tables:
       - name: METEO
