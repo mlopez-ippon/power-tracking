@@ -1,2 +1,2 @@
-conso_date,city,h_offpeak_supplier,h_peak_supplier,total_sum
+conso_date,city_id,h_offpeak_supplier,h_peak_supplier,total_sum
 2023-04-06,Bordeaux,104459968,0,104459968

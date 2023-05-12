@@ -5,7 +5,7 @@ with consommation as (
 , enedis_aggregation as(
     select
         conso_date
-        , city
+        , city_id
         , h_offpeak_supplier
         , h_peak_supplier
     from
