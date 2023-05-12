@@ -41,4 +41,4 @@ select
     , max(enedis_job_modify_at) as enedis_job_modify_at
 from fact_enedis_consommation
 group by conso_date, case when city_id like 'Paris%' then 'Paris' else city_id end
-order by conso_date
+order by conso_date 
