@@ -1,9 +1,7 @@
 {{
   config(
-    materialized='incremental',
-    incremental_strategy='merge',
+    materialized='table',
     cluster_by=['conso_date'],
-    merge_exclude_columns=['conso_date','city_id','enedis_job_insert_at'],
     unique_key=['conso_date','city_id']
   )
 }}
