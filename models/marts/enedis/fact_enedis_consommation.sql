@@ -1,7 +1,9 @@
 {{
   config(
-    materialized='table',
+    materialized='incremental',
+    incremental_strategy='merge',
     cluster_by=['conso_date'],
+    merge_exclude_columns=['conso_date','city_id','enedis_job_insert_at'],
     unique_key=['conso_date','city_id']
   )
 }}
@@ -39,4 +41,4 @@ select
     , max(enedis_job_modify_at) as enedis_job_modify_at
 from fact_enedis_consommation
 group by conso_date, case when city_id like 'Paris%' then 'Paris' else city_id end
-order by conso_date 
+order by conso_date
