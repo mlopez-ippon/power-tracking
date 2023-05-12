@@ -4,7 +4,7 @@ with source as (
 
 , renamed as (
     select
-        Horodate::date              as conso_date
+        horodate::date              as conso_date
         , Type_de_releve::string    as statement_type
         , EAS_F1::number(38,0)      as h_offpeak_supplier
         , EAS_F2::number(38,0)      as h_peak_supplier
