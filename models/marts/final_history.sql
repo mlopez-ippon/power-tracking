@@ -6,11 +6,14 @@ with semana_aggregation as (
     select * from {{ ref('enedis_history') }}
 )
 
+, meteo_aggregation as (
+    select * from {{ ref('meteo_history') }}
+)
 , final_aggregation as (
     select
         s.reservation_date
         , s.day_of_the_week
-        , s.agency
+        , s.agency as AGENCY
         , s.latitude
         , s.longitude
         , e.h_offpeak_supplier
@@ -28,7 +31,7 @@ with semana_aggregation as (
     on 
         s.reservation_date=e.conso_date and s.agency=e.city_id
     left join
-        meteo_history m
+        meteo_aggregation m
     on
         s.reservation_date = m.date and s.agency=m.city
 )
