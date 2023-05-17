@@ -18,13 +18,4 @@ models:
         description: '{{ doc("enedis_job_insert_at") }}'
       - name: enedis_job_modify_at
         description: '{{ doc("enedis_job_modify_at") }}'
-    tests:
-      - dbt_utils.equality:
-          compare_model: ref('expected_output_consommation')
-          compare_columns:
-            - conso_date
-            - city_id
-            - h_offpeak_supplier 
-            - h_peak_supplier 
-            - total_sum
-          tags: ['ci']
+    

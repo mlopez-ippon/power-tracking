@@ -12,7 +12,7 @@ with enedis_consommation_structured as (
     select * from {{ ref('stg_enedis__consommation') }}
 )
 
-, fact_enedis_consommation as (
+, enedis_consommation_city_renammed as (
     select 
         conso_date
         , case city_id
@@ -31,14 +31,18 @@ with enedis_consommation_structured as (
         enedis_consommation_structured
 )
 
-select 
-    conso_date
-    , max(case when city_id like 'Paris%' then 'Paris' else city_id end) as city_id
-    , sum(h_offpeak_supplier) as h_offpeak_supplier
-    , sum(h_peak_supplier) as h_peak_supplier
-    , sum(total_sum) as total_sum
-    , max(enedis_job_insert_at) as enedis_job_insert_at
-    , max(enedis_job_modify_at) as enedis_job_modify_at
-from fact_enedis_consommation
-group by conso_date, case when city_id like 'Paris%' then 'Paris' else city_id end
-order by conso_date
+, fact_enedis_consommation as (
+    select 
+        conso_date
+        , max(case when city_id like 'Paris%' then 'Paris' else city_id end) as city_id
+        , sum(h_offpeak_supplier) as h_offpeak_supplier
+        , sum(h_peak_supplier) as h_peak_supplier
+        , sum(total_sum) as total_sum
+        , max(enedis_job_insert_at) as enedis_job_insert_at
+        , max(enedis_job_modify_at) as enedis_job_modify_at
+    from enedis_consommation_city_renammed
+    group by conso_date, case when city_id like 'Paris%' then 'Paris' else city_id end
+    order by conso_date
+)
+
+select * from fact_enedis_consommation
