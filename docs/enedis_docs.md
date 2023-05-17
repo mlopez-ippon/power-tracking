@@ -3,7 +3,7 @@ Date de la consommation d'énèrgie
 **Type** : date
 {% enddocs %}
 
-{% docs city_id %}
+{% docs city %}
 Date de la consommation d'énèrgie
 **Type** : string
 {% enddocs %}
