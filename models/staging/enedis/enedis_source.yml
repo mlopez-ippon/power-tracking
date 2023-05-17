@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: POWER_TRACKING_SCHEMA
+    description: Schema where normalized data are loaded from airbyte 
+    tables:
+      - name: IPPON_ELECTRICAL_CONSUMATION_DAILY
+        description: >
+          Table containing all time-stable information about the electrical consumation of Ippon
