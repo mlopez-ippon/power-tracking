@@ -3,7 +3,7 @@ Date de la consommation d'énèrgie
 **Type** : date
 {% enddocs %}
 
-{% docs city %}
+{% docs city_id %}
 Date de la consommation d'énèrgie
 **Type** : string
 {% enddocs %}
@@ -32,4 +32,6 @@ Timestamp indicating when the line was added
 Timestamp indicating the last modification of the line  
 **Type** : timestamp
 {% enddocs %}
+
+
 
