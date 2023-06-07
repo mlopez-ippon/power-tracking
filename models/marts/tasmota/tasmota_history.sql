@@ -4,7 +4,9 @@ with tasmota as (
 
 , tasmota_aggregation as (
     select 
-        measure_time
+        date
+        , day_of_week
+        , measure_time
         , case when lag(total_energy_today, 1) over (order by measure_time) is null then 0
                when total_energy_today - lag(total_energy_today, 1, 0) over (order by measure_time) < 0 then 0
                else total_energy_today - lag(total_energy_today, 1, 0) over (order by measure_time)

@@ -4,6 +4,8 @@ models:
   - name: fact_tasmota_energy
     description: Table of facts describing the data captured by the linky of Nantes' agency
     columns:
+      - name: date
+      - name: day_of_week
       - name: measure_time
         description:  '{{ doc("measure_time")}}'
       - name: current_current
@@ -18,6 +20,8 @@ models:
       - dbt_utils.equality:
           compare_model: ref('expected_output_meteo')
           compare_columns:
+            - date
+            - day_of_week
             - measure_time
             - current_current
             - current_load
