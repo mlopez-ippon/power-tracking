@@ -15,6 +15,7 @@ with total_energy as (
 , fact_tasmota_energy as (
     select
         date(measure_time) as date
+        , dayname(date) as day_of_week
         , measure_time
         , current_current
         , current_load
