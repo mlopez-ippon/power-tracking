@@ -1,0 +1,15 @@
+version: 2
+
+exposures:
+  - name: energy_reporting
+    label: Dashboard energy reporting
+    type: dashboard
+    maturity: high
+    url: https://superset.apache.org/
+    description: > 
+        Dashboard analysis of energy data captured for Nantes (with a tasmota captor)
+    depends_on:
+      - ref('tasmota_history')
+    owner:
+      name: Mathis Le Gall
+      email: mlegall@ippon.fr

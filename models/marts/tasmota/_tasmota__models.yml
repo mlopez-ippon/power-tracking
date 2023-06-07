@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: fact_tasmota_energy
+    description: Table of facts describing the data captured by the linky of Nantes' agency
+    columns:
+      - name: measure_time
+        description:  '{{ doc("measure_time")}}'
+      - name: current_current
+        description: '{{ doc("current_current")}}'
+      - name: current_load
+        description: '{{ doc("current_load")}}'
+      - name: current_power
+        description: '{{ doc("current_power")}}'
+      - name: total_energy_today
+        description: '{{ doc("total_energy_today")}}'
