@@ -14,7 +14,8 @@ with total_energy as (
 
 , fact_tasmota_energy as (
     select
-        measure_time
+        date(measure_time) as date
+        , measure_time
         , current_current
         , current_load
         , current_power
