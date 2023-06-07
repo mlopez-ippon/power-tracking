@@ -21,4 +21,11 @@ with meteo as (
         meteo
 ) 
 
-select * from meteo_aggregation
+
+select 
+    date(capture_time) as date,
+    city,
+    avg(temperature_celsius) as average_temperature,
+    avg(humidity) as average_humidity
+from meteo_aggregation
+group by date(capture_time), city

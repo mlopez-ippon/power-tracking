@@ -82,6 +82,8 @@ with practices as (
         coordinates c
     on 
         cte.agency=c.practice_name
+    qualify 
+        row_number() over (partition by reservation_date, agency order by reservation_date) = 1
 )
 
-select * from semana_aggregation
+select * from semana_aggregation order by reservation_date

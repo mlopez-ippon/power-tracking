@@ -5,7 +5,7 @@ with enedis_consommation as (
 , enedis_consommation_structured as (
     select 
         conso_date
-        , city
+        , city_id
         , ifnull(h_offpeak_supplier,0)              as h_offpeak_supplier
         , ifnull(h_peak_supplier,0)                 as h_peak_supplier
         , h_offpeak_low_season_distributor
@@ -16,7 +16,7 @@ with enedis_consommation as (
     from 
         enedis_consommation
     qualify
-        row_number() over(partition by conso_date, city order by conso_date desc) = 1
+        row_number() over(partition by conso_date, city_id order by conso_date desc) = 1
 )
 
-select * from enedis_consommation_structured
+select * from enedis_consommation_structured WHERE city_id <> '7334876946936'

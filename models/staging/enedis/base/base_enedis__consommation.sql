@@ -1,12 +1,11 @@
 with source as (
-    select * from {{ ref('simu_enedis') }}
+    {{ mockable_source('input_consommation','POWER_TRACKING_SCHEMA','IPPON_ELECTRICAL_CONSUMATION_DAILY') }}
 ) 
 
 , renamed as (
     select
         Horodate::date              as conso_date
         , Type_de_releve::string    as statement_type
-        , Ville::string             as city
         , EAS_F1::number(38,0)      as h_offpeak_supplier
         , EAS_F2::number(38,0)      as h_peak_supplier
         , EAS_F3::number(38,0) 
@@ -22,6 +21,8 @@ with source as (
         , EAS_D3::number(38,0)      as h_offpeak_high_season_distributor
         , EAS_D4::number(38,0)      as h_peak_high_season_distributor
         , EAS_T::number(38,0)       as total_sum
+        , PRM_ID::string            as city_id
+        , inserted_at::string       as inserted_at
     from
         source
 )

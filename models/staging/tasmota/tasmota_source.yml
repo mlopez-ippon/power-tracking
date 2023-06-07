@@ -1,0 +1,11 @@
+version: 2
+
+sources:
+  - name: FEATURE_SILVER
+    database: OSAKA_FEATURE_DB
+    schema: FEATURE_SILVER
+    description: Schema where normalized data are loaded from airbyte 
+    tables:
+      - name: FCT_TASMOTA_ENERGY
+        description: >
+          Table containing information about energy get with a captor
