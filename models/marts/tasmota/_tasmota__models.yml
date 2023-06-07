@@ -14,3 +14,13 @@ models:
         description: '{{ doc("current_power")}}'
       - name: total_energy_today
         description: '{{ doc("total_energy_today")}}'
+    tests:
+      - dbt_utils.equality:
+          compare_model: ref('expected_output_meteo')
+          compare_columns:
+            - measure_time
+            - current_current
+            - current_load
+            - current_power
+            - total_energy_today
+          tags: ['ci']
