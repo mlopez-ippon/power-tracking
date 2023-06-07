@@ -14,7 +14,7 @@ with enedis_consommation_structured as (
 
 , enedis_consommation_city_renammed as (
     select 
-        conso_date
+        date(conso_date) as conso_date
         , case city_id
             when '16182633862074' then 'Bordeaux'
             when '7449348688744' then 'Paris 8ème'
