@@ -1,5 +1,5 @@
 with source as (
-    {{ mockable_source('input_conso','POWER_TRACKING_SCHEMA','IPPON_ELECTRICAL_CONSUMATION_DAILY') }}
+    {{ mockable_source('input_consommation','POWER_TRACKING_SCHEMA','IPPON_ELECTRICAL_CONSUMATION_DAILY') }}
 ) 
 
 , renamed as (
