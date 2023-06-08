@@ -16,6 +16,7 @@ with total_energy as (
     select
         date(measure_time) as date
         , dayname(date) as day_of_week
+        , dayofweek(date) as day_week_number
         , measure_time
         , current_current
         , current_load
