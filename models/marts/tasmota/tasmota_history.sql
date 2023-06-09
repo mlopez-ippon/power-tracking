@@ -11,6 +11,7 @@ with tasmota as (
         , t1.energy_per_hour
         , t2.max_value as max_value_of_day
         , extract(hour from t1.measure_time) as hour_of_measure_time
+        , 'Nantes' as agency
     from
         (select 
             date,

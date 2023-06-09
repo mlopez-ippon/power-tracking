@@ -9,6 +9,7 @@ with consommation as (
         , city_id
         , h_offpeak_supplier
         , h_peak_supplier
+        , total_sum
     from
         consommation
 ) 
