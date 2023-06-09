@@ -2,8 +2,8 @@ with semana_aggregation as (
     select * from {{ ref('semana_history') }}
 )
 
-, enedis_aggregation as (
-    select * from {{ ref('enedis_history') }}
+, energy_aggregation as (
+    select * from {{ ref('energy_history') }}
 )
 
 , meteo_aggregation as (
@@ -16,8 +16,7 @@ with semana_aggregation as (
         , s.agency as AGENCY
         , s.latitude
         , s.longitude
-        , e.h_offpeak_supplier
-        , e.h_peak_supplier
+        , e.max_value_of_day
         , s.day_office_collaborators
         , s.day_remote_collaborators
         , s.day_off_collaborators  
@@ -27,9 +26,9 @@ with semana_aggregation as (
     from 
         semana_aggregation s
     left join
-        enedis_aggregation e
+        energy_aggregation e
     on 
-        s.reservation_date=e.conso_date and s.agency=e.city_id
+        s.reservation_date=e.date and s.agency=e.agence
     left join
         meteo_aggregation m
     on

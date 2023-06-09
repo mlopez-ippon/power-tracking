@@ -21,7 +21,7 @@ with total_energy as (
         , current_current
         , current_load
         , current_power
-        , total_energy_today
+        , total_energy_today * 1000 as total_energy_today
         , sysdate()                                         as tasmota_job_insert_at
         , sysdate()                                         as tasmota_job_modify_at 
     from 
