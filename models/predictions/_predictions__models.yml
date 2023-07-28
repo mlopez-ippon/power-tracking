@@ -1,10 +1,17 @@
 version: 2
 
 models:
-  - name: fact_predictions_predict
-    description: Table of facts describing the data captured by the linky of Nantes' agency
+  - name: fact_predictions_semana
+    description: Table of facts describing the semana data predicted
     columns:
       - name: date
       - name: agency
       - name: day_office
       - name : predictions
+  - name: fact_predictions_enedis
+    description: Table of facts describing the enedis data predicted
+    columns:
+      - name: date
+      - name: agency
+      - name: conso_energy
+      - name: predictions
