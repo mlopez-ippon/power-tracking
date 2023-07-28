@@ -2,6 +2,7 @@ with source as (
     {{ mockable_source('input_consommation','POWER_TRACKING_SCHEMA','TEST_PREDICT_SEMANA') }}
 ) 
 
+
 , renamed as (
     select 
         index::date as date
