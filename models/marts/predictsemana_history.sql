@@ -27,4 +27,5 @@ with predictions_aggregation as (
 )
 
 
+
 select * from predictsemana_aggregation order by reservation_date desc 
