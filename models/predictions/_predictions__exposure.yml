@@ -1,0 +1,15 @@
+version: 2
+
+exposures:
+  - name: predictions_reporting
+    label: Dashboard predictions reporting
+    type: dashboard
+    maturity: high
+    url: https://superset.apache.org/
+    description: > 
+        Dashboard analysis of predictions data obtain with a ML model
+    depends_on:
+      - ref('predictions_history')
+    owner:
+      name: Mathis Le Gall
+      email: mlegall@ippon.fr

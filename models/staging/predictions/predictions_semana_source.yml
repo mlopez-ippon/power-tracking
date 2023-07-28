@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: POWER_TRACKING_SCHEMA
+    description: Schema where normalized data are loaded from airbyte 
+    tables:
+      - name: TEST_PREDICT_SEMANA
+        description: >
+          Table containing information about predictions done by a ML model
