@@ -12,10 +12,9 @@ with tasmota_energy as (
         , total_energy_today
     from 
         tasmota_energy
-    where 
-        substring(measure_time, 14, 3) = ':00'
-    order by
-        measure_time
+    qualify
+        row_number() over(partition by measure_time order by measure_time desc) = 1
+
 )
 
-select * from total_energy
+select * from total_energy where substring(measure_time, 14, 3) = ':00' order by measure_time
