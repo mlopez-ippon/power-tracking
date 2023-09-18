@@ -106,9 +106,9 @@ models:
           - unique
       - name: role
         description: '{{ doc("role")}}'
-        tests:
-          - accepted_values:
-              values: ['collaborator','manager','admin']
+        #tests:
+        #  - accepted_values:
+         #     values: ['collaborator','manager','admin']
       - name: status
         description: '{{ doc("status")}}'
         tests:

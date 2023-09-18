@@ -1,5 +1,5 @@
 with source as (
-    {{ mockable_source('input_consommation','POWER_TRACKING_SCHEMA','PREDICT_ENEDIS') }}
+    {{ mockable_source('input_enedis','POWER_TRACKING_SCHEMA','PREDICT_ENEDIS') }}
 ) 
 
 , renamed as (
